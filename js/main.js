@@ -1,8 +1,11 @@
 var app = document.getElementById("app");
 app.className = "container-fluid p-5 border";
 
-count = 0;
-var symbols = ["C", " ", " ", "/", 7, 8, 9, "X", 4, 5, 6, "-", 1, 2, 3, "+", 0, " ", ".", "="]
+var count = 0;
+var arrayCount = 0;
+var symbols = ["C", " ", " ", "/", 7, 8, 9, "x", 4, 5, 6, "-", 1, 2, 3, "+", 0, " ", ".", "="]
+var userInput = [];
+var answer = 9+3;
 
 // Create UI
 //Create Title
@@ -40,12 +43,35 @@ for (var i = 0; i < 5; i++) {
         var text = document.createTextNode(symbols[count]);
         var insert = symbols[count];
         newCol.setAttribute("style", "height: 75px;");
-        newCol.addEventListener("click", function () {
-            document.getElementById("numField").innerHTML = symbols[this.id];
-        })
+        newCol.addEventListener("click", clickHandler); 
+            
         //text.setAttribute("style", "font-size: 3em;")
         newRow.appendChild(newCol);
         newCol.appendChild(text);
         count++;
     }
+}
+
+function clickHandler(){
+    if (symbols[this.id]!== "=" && symbols[this.id] !== "C" && symbols[this.id] !== "."  && symbols[this.id] !== " "){
+    
+    userInput[arrayCount] = symbols[this.id];
+    document.getElementById("numField").innerHTML = userInput.join("");
+    console.log("button click");
+    console.log(userInput);
+    arrayCount++;}
+
+    else if (symbols[this.id] == "="){
+        answer = parseInt(userInput.join(""));
+        console.log(answer);
+    }
+
+    else if (symbols[this.id == "C"]){
+        console.log("clear");
+    }
+
+    else if (symbols[this.id] == "."){
+        console.log("decimal");
+    }
+
 }

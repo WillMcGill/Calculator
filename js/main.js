@@ -5,7 +5,7 @@ var count = 0;
 var arrayCount = 0;
 var symbols = ["C", " ", " ", "/", 7, 8, 9, "x", 4, 5, 6, "-", 1, 2, 3, "+", 0, " ", ".", "="]
 var userInput = [];
-var answer = 9+3;
+var answer = 0;
 
 // Create UI
 //Create Title
@@ -62,7 +62,8 @@ function clickHandler(){
     arrayCount++;}
 
     else if (symbols[this.id] == "="){
-        answer = parseInt(userInput.join(""));
+        // answer = Number(userInput[0]) + string(userInput[1]) + Number(userInput[2]);
+        doMath();
         console.log(answer);
     }
 
@@ -74,4 +75,12 @@ function clickHandler(){
         console.log("decimal");
     }
 
+}
+
+function doMath(){
+    for (i = 0; i <= count; i++){
+        if (isNaN(userInput[i]) == false){
+            console.log("it's a number");
+        }
+    }
 }

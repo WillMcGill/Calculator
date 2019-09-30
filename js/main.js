@@ -87,6 +87,7 @@ switch (isNum){
         else {num2 = number;
             document.getElementById("numField").innerHTML = num2;
         };
+        console.log({num1}, {num2}, {number});
 
     break;
 
@@ -95,18 +96,28 @@ switch (isNum){
         document.getElementById("numField").innerHTML = "+";
         //console.log(operator);
         number = 0;
-        num1 = num1 + num2;
+        //num1 = Number(num1) + Number(num2);
+        //console.log({num1}, {num2}, {number});
     break;
     
     case "-":
+        operator = "-";
+            document.getElementById("numField").innerHTML = "-";
+            number = 0;
             console.log('case -');
     break;
 
     case "x":
+            operator = "x";
+            document.getElementById("numField").innerHTML = "x";
+            number = 0;
         console.log('case x');
     break;
 
     case "/":
+            operator = "/";
+            document.getElementById("numField").innerHTML = "/";
+            number = 0;
         console.log('case /');
     break;
 
@@ -114,7 +125,18 @@ switch (isNum){
         if (operator == "+"){
         document.getElementById("numField").innerHTML = Number(num1) + Number(num2);
         }
-        console.log(num1+operator+num2);
+        else if(operator == "-"){
+            document.getElementById("numField").innerHTML = Number(num1) - Number(num2);
+        }
+        else if(operator == "x"){
+            document.getElementById("numField").innerHTML = Number(num1) * Number(num2);
+        }
+        else if(operator == "/"){
+            document.getElementById("numField").innerHTML = Number(num1) / Number(num2);
+        }
+        number = 0;
+        console.log(number);
+        
     break;
 
     case "C":

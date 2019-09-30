@@ -7,8 +7,8 @@ var symbols = ["C", " ", " ", "/", 7, 8, 9, "x", 4, 5, 6, "-", 1, 2, 3, "+", 0, 
 //var userInput = [];
 var answer = 0;
 var number = "";
-var num1 = 0;
-var num2 = 0;
+var num1 = "";
+var num2 = "";
 var operator = "";
 // Create UI
 //Create Title
@@ -40,7 +40,7 @@ for (var i = 0; i < 5; i++) {
 
     for (var j = 0; j < 4; j++) {
         var newCol = document.createElement("div");
-        newCol.className = "col-3 btn btn-outline-success p-4";
+        newCol.className = "col-3 btn btn-outline-success p-2";
         newCol.id = count;
         //console.log(count);
         var text = document.createTextNode(symbols[count]);
@@ -95,8 +95,8 @@ switch (isNum){
         operator = "+"; //add = number + buttonPress;
         document.getElementById("numField").innerHTML = "+";
         //console.log(operator);
-        number = 0;
-        //num1 = Number(num1) + Number(num2);
+        number = "";
+        num1 = Number(num1) + Number(num2);
         //console.log({num1}, {num2}, {number});
     break;
     
@@ -151,48 +151,3 @@ switch (isNum){
 }
 }
 
-// function doMath() {
-
-   
-
-//     for (let i = 0; i < arrayCount; i++) {
-//         if (isNaN(userInput[i]) == false) {
-//             console.log('number');
-//         }
-
-//         else {
-//             console.log(userInput[i]);
-//         }
-//     }
-//}
-
-///////////////////////////////
-    // if (isNaN(symbols[this.id]) == false) {//"=" && symbols[this.id] !== "C" && symbols[this.id] !== "." && symbols[this.id] !== " ") {
-
-    //     userInput[arrayCount] = symbols[this.id];
-    //     document.getElementById("numField").innerHTML = userInput.join("");
-    //     num1 = parseInt(userInput.join(""));
-    //     console.log("button click");
-    //     console.log(num1);
-    //     arrayCount++;
-        
-    // }
-
-    // else if (symbols[this.id] == "=") {
-    //     // answer = Number(userInput[0]) + string(userInput[1]) + Number(userInput[2]);
-    //     // doMath();
-    //     //console.log(answer);
-    // }
-
-    // else if (symbols[this.id] == "C") {
-        
-    //     userInput = [];
-    //     document.getElementById("numField").innerHTML = userInput.join("");
-    //     console.log(userInput);
-
-    // }
-
-    // else if (symbols[this.id] == ".") {
-    //     console.log("decimal");
-    // }
-//////////////////////////////////////////

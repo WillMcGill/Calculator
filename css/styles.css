@@ -2,3 +2,7 @@
     background-color: #303030;
 
 }
+
+.col-3.btn.btn-outline-success.p-2{
+    font-size: 2em;
+}

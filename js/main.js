@@ -4,7 +4,7 @@ app.className = "container-fluid p-5 border";
 var count = 0;
 var arrayCount = 0;
 var symbols = ["C", " ", " ", "/", 7, 8, 9, "x", 4, 5, 6, "-", 1, 2, 3, "+", 0, " ", ".", "="]
-//var userInput = [];
+var userInput = [];
 var answer = 0;
 var number = "";
 var num1 = "";
@@ -62,7 +62,7 @@ console.log({buttonPress});
 
 var isNum = 0;
 
-if (isNaN(buttonPress) == false){
+if (isNaN(buttonPress) == false  || buttonPress == "."){
     //console.log('number');
    
     isNum = 0;
@@ -76,18 +76,24 @@ else{
 switch (isNum){
 
     case 0:
-        console.log('case 0');
-       // userInput[count] = buttonPress;
-        number = number + buttonPress;
-        document.getElementById("numField").innerHTML = number;
-        if (num1 == 0){
-        num1 = number;
-        document.getElementById("numField").innerHTML = num1;
-        }
-        else {num2 = number;
-            document.getElementById("numField").innerHTML = num2;
-        };
-        console.log({num1}, {num2}, {number});
+        userInput[count] = buttonPress;
+        count++;
+        document.getElementById("numField").innerHTML = userInput.join("");
+        num1 = Number(userInput.join(""))
+        console.log(num1);
+
+    //     console.log('case 0');
+    //    // userInput[count] = buttonPress;
+    //     number = number + buttonPress;
+    //     document.getElementById("numField").innerHTML = number;
+    //     if (num1 == 0){
+    //     num1 = number;
+    //     document.getElementById("numField").innerHTML = num1;
+    //     }
+    //     else {num2 = number;
+    //         document.getElementById("numField").innerHTML = num2;
+    //     };
+    //     console.log({num1}, {num2}, {number});
 
     break;
 
@@ -97,6 +103,9 @@ switch (isNum){
         //console.log(operator);
         number = "";
         num1 = Number(num1) + Number(num2);
+        num2 = 0;
+        userInput = [];
+        count = 0;
         //console.log({num1}, {num2}, {number});
     break;
     
@@ -144,6 +153,7 @@ switch (isNum){
         number = 0;
         num1 = 0;
         num2 = 0;
+        userInput = [];
         document.getElementById("numField").innerHTML = "";
     break;
     

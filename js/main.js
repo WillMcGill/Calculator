@@ -75,7 +75,7 @@ function clickHandler() {
             userInput[count] = buttonPress;
             count++;
             document.getElementById("numField").innerHTML = userInput.join("");
-            tempNumber = Number(userInput.join(""))
+            tempNumber = Number(userInput.join(""));
             console.log({ tempNumber }, { num1 }, { num2 });
 
             break;
@@ -114,10 +114,14 @@ function clickHandler() {
             document.getElementById("numField").innerHTML = "x";
             if (num1 == 0) {
                 num1 = num1 + tempNumber;
+                console.log('num1 is zero')
             }
-            else if(tempNumber == 0){
-                num1 = num1;
+            else if (tempNumber !== 0){
+                num1 = num1 * tempNumber;
+                console.log('temp not zero')
             }
+            else {num1 = tempNumber * num1;
+            console.log('else')};
             num2 = 0;
             userInput = [];
             count = 0;
@@ -131,7 +135,7 @@ function clickHandler() {
             if (num1 == 0) {
                 num1 = num1 + tempNumber;
             }
-            else if(tempNumber == 0){
+            else if (tempNumber == 0) {
                 num1 = num1;
             }
             num2 = 0;

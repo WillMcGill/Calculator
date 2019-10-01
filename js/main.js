@@ -4,9 +4,9 @@ app.className = "container-fluid p-5 border";
 var count = 0;
 var arrayCount = 0;
 var symbols = ["C", " ", " ", "/", 7, 8, 9, "x", 4, 5, 6, "-", 1, 2, 3, "+", 0, " ", ".", "="]
-//var userInput = [];
+var userInput = [];
 var answer = 0;
-var number = "";
+var tempNumber = 0;
 var num1 = "";
 var num2 = "";
 var operator = "";
@@ -62,7 +62,7 @@ console.log({buttonPress});
 
 var isNum = 0;
 
-if (isNaN(buttonPress) == false){
+if (isNaN(buttonPress) == false  || buttonPress == "."){
     //console.log('number');
    
     isNum = 0;
@@ -76,74 +76,104 @@ else{
 switch (isNum){
 
     case 0:
-        console.log('case 0');
-       // userInput[count] = buttonPress;
-        number = number + buttonPress;
-        document.getElementById("numField").innerHTML = number;
-        if (num1 == 0){
-        num1 = number;
-        document.getElementById("numField").innerHTML = num1;
-        }
-        else {num2 = number;
-            document.getElementById("numField").innerHTML = num2;
-        };
-        console.log({num1}, {num2}, {number});
+        userInput[count] = buttonPress;
+        count++;
+        document.getElementById("numField").innerHTML = userInput.join("");
+        tempNumber = Number(userInput.join(""))
+        console.log(tempNumber);
+
+    //     console.log('case 0');
+    //    // userInput[count] = buttonPress;
+    //     number = number + buttonPress;
+    //     document.getElementById("numField").innerHTML = number;
+    //     if (num1 == 0){
+    //     num1 = number;
+    //     document.getElementById("numField").innerHTML = num1;
+    //     }
+    //     else {num2 = number;
+    //         document.getElementById("numField").innerHTML = num2;
+    //     };
+    //     console.log({num1}, {num2}, {number});
 
     break;
 
     case "+":
-        operator = "+"; //add = number + buttonPress;
+        operator = "+";
         document.getElementById("numField").innerHTML = "+";
-        //console.log(operator);
-        number = "";
-        num1 = Number(num1) + Number(num2);
-        //console.log({num1}, {num2}, {number});
+        num1 = tempNumber;
+        num2 = 0;
+        userInput = [];
+        count = 0;
+        tempNumber = 0;
+        console.log('addition', {num1}, {num2}, {tempNumber});
     break;
     
     case "-":
         operator = "-";
             document.getElementById("numField").innerHTML = "-";
-            number = 0;
-            console.log('case -');
+            num1 = tempNumber;
+            num2 = 0;
+            userInput = [];
+            count = 0;
+            tempNumber = 0;
+            console.log('subtract', {num1}, {num2}, {tempNumber});
     break;
 
     case "x":
             operator = "x";
             document.getElementById("numField").innerHTML = "x";
-            number = 0;
-        console.log('case x');
+            num1 = tempNumber;
+            num2 = 0;
+            userInput = [];
+            count = 0;
+            tempNumber = 0;
+            console.log('multiply', {num1}, {num2}, {tempNumber});
     break;
 
     case "/":
             operator = "/";
             document.getElementById("numField").innerHTML = "/";
-            number = 0;
-        console.log('case /');
+            num1 = tempNumber;
+            num2 = 0;
+            userInput = [];
+            count = 0;
+            tempNumber = 0;
+            console.log('divide', {num1}, {num2}, {tempNumber});
     break;
 
     case "=":
+        num2 = tempNumber;
+        console.log('equals', {tempNumber}, {num1}, {num2})
         if (operator == "+"){
-        document.getElementById("numField").innerHTML = Number(num1) + Number(num2);
+        document.getElementById("numField").innerHTML = num1 + num2;
+        num1 = num1 + num2;
         }
         else if(operator == "-"){
-            document.getElementById("numField").innerHTML = Number(num1) - Number(num2);
+            document.getElementById("numField").innerHTML = num1 - num2;
+            num1 = num1 - num2;
         }
         else if(operator == "x"){
-            document.getElementById("numField").innerHTML = Number(num1) * Number(num2);
+            document.getElementById("numField").innerHTML = num1 * num2;
+            num1 = num1 * num2;
         }
         else if(operator == "/"){
-            document.getElementById("numField").innerHTML = Number(num1) / Number(num2);
+            document.getElementById("numField").innerHTML = num1 / num2;
+            num1 = num1 / num2;
         }
-        number = 0;
-        console.log(number);
+        //console.log(number);
+        tempNumber = num1;
+        console.log('equals', {tempNumber}, {num1}, {num2})
+        
+        
         
     break;
 
     case "C":
         console.log('clear');
-        number = 0;
+        tempNumber = 0;
         num1 = 0;
         num2 = 0;
+        userInput = [];
         document.getElementById("numField").innerHTML = "";
     break;
     

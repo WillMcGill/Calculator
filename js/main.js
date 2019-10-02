@@ -5,7 +5,7 @@ var count = 0;
 var numCount = 0;
 var symbols = ["C", " ", " ", "/", 7, 8, 9, "x", 4, 5, 6, "-", 1, 2, 3, "+", 0, " ", ".", "="]
 var userInput = [];
-//var answer = 0;
+var decimal = 0;
 var tempNumber = 0;
 var num1 = 0;
 var num2 = 0;
@@ -68,9 +68,15 @@ function clickHandler() {
         
         case 0:
         if (numCount < 11){
+            if (buttonPress == "." && decimal > 0){
+                break;
+            } 
+            else if (buttonPress == "." && decimal ==0){
+                decimal++;
+            }
             userInput[count] = buttonPress;
             count++;
-            console.log(userInput.length);
+            //console.log(userInput.length);
             document.getElementById("numField").innerHTML = userInput.join("");
             numCount++;
             tempNumber = Number(userInput.join(""));
@@ -80,30 +86,25 @@ function clickHandler() {
             break;
 
         case "+":
+            previousMath();
             operator = "+";
             document.getElementById("numField").innerHTML = "+";
-            num1 += tempNumber;
+            // num1 += tempNumber;
             updateVars();
             console.log('addition', { tempNumber }, { num1 }, { num2 });
             break;
 
         case "-":
+            previousMath();
             operator = "-";
             document.getElementById("numField").innerHTML = "-";
-
-            if (num1 == 0) {
-                num1 = num1 + tempNumber;
-            }
-            else {
-                num1 = num1 - tempNumber;
-            }
             console.log('subtract', { tempNumber }, { num1 }, { num2 });
             updateVars();
             
             break;
 
         case "x":
-            //previous(operator);
+            previousMath();
             operator = "x";
             document.getElementById("numField").innerHTML = "x";
             if (num1 == 0) {
@@ -121,6 +122,7 @@ function clickHandler() {
             break;
 
         case "/":
+            previousMath();
             operator = "/";
             document.getElementById("numField").innerHTML = "/";
             if (num1 == 0) {
@@ -152,18 +154,19 @@ function clickHandler() {
                 document.getElementById("numField").innerHTML = num1 / num2;
                 num1 = num1 / num2;
             }
-            console.log('x pressed');
-            tempNumber = 0;
-            num2 = 0;
+            console.log('= pressed');
+            //tempNumber = 0;
+            //num2 = 0;
             console.log('equals', { tempNumber }, { num1 }, { num2 })
             break;
 
         case "C":
             console.log('clear');
-            tempNumber = 0;
+            // tempNumber = 0;
             num1 = 0;
-            num2 = 0;
-            userInput = [];
+            // num2 = 0;
+            // userInput = [];
+            updateVars();
             document.getElementById("numField").innerHTML = "";
             console.log({ tempNumber }, { num1 }, { num2 })
             break;
@@ -177,4 +180,32 @@ function updateVars(){
     count = 0;
     tempNumber = 0;
     numCount = 0;
+    decimal = 0;
     }
+
+function previousMath(){
+    console.log (operator);
+    if (operator == ""){
+        num1 = tempNumber;
+
+    }
+    else {
+    if (operator == "+") {
+        //document.getElementById("numField").innerHTML = num1 + num2;
+        num1 = num1 + tempNumber;
+       // console.log("inside previous");
+    }
+    else if (operator == "-") {
+        //document.getElementById("numField").innerHTML = num1 - num2;
+        num1 = num1 - tempNumber;
+    }
+    else if (operator == "x") {
+        //document.getElementById("numField").innerHTML = num1 * num2;
+        num1 = num1 * tempNumber;
+    }
+    else if (operator == "/") {
+        //document.getElementById("numField").innerHTML = num1 / num2;
+        num1 = num1 / tempNumber;
+    }
+}
+}

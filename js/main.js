@@ -80,30 +80,32 @@ function clickHandler() {
             break;
 
         case "+":
+            previousMath();
             operator = "+";
             document.getElementById("numField").innerHTML = "+";
-            num1 += tempNumber;
+            // num1 += tempNumber;
             updateVars();
             console.log('addition', { tempNumber }, { num1 }, { num2 });
             break;
 
         case "-":
+            previousMath();
             operator = "-";
             document.getElementById("numField").innerHTML = "-";
 
-            if (num1 == 0) {
-                num1 = num1 + tempNumber;
-            }
-            else {
-                num1 = num1 - tempNumber;
-            }
+            // if (num1 == 0) {
+            //     num1 = num1 + tempNumber;
+            // }
+            // else {
+            //     num1 = num1 - tempNumber;
+            // }
             console.log('subtract', { tempNumber }, { num1 }, { num2 });
             updateVars();
             
             break;
 
         case "x":
-            //previous(operator);
+            previousMath();
             operator = "x";
             document.getElementById("numField").innerHTML = "x";
             if (num1 == 0) {
@@ -121,6 +123,7 @@ function clickHandler() {
             break;
 
         case "/":
+            previousMath();
             operator = "/";
             document.getElementById("numField").innerHTML = "/";
             if (num1 == 0) {
@@ -178,3 +181,30 @@ function updateVars(){
     tempNumber = 0;
     numCount = 0;
     }
+
+function previousMath(){
+    console.log (operator);
+    if (operator == ""){
+        num1 = tempNumber;
+
+    }
+    else {
+    if (operator == "+") {
+        //document.getElementById("numField").innerHTML = num1 + num2;
+        num1 = num1 + tempNumber;
+        console.log("inside previous");
+    }
+    else if (operator == "-") {
+        //document.getElementById("numField").innerHTML = num1 - num2;
+        num1 = num1 - tempNumber;
+    }
+    else if (operator == "x") {
+        //document.getElementById("numField").innerHTML = num1 * num2;
+        num1 = num1 * tempNumber;
+    }
+    else if (operator == "/") {
+        //document.getElementById("numField").innerHTML = num1 / num2;
+        num1 = num1 / tempNumber;
+    }
+}
+}
